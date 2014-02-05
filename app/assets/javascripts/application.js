@@ -12,4 +12,6 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require opensubtitles-hash
+//= require utils
 //= require_tree .

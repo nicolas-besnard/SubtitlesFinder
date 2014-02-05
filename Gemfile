@@ -9,6 +9,10 @@ gem 'mysql2'
 gem 'jquery-rails'
 gem 'figaro'
 
+# TEST
+gem 'httparty'
+gem 'zip'
+gem 'rubyzip'
 
 # Gems used only for assets and not required
 # in production environments by default.
