@@ -44,7 +44,7 @@ class OpenSubtitles
 
 		@username = options[:username] || ''
 		@password = options[:password] || ''
-		@language = options[:language] || 'eng'
+		@language = options[:language] || 'fra'
 		@useragent = options[:useragent] || 'ruby-osdb v0.1'
 
 		options = DEFAULT_OPTIONS.merge(options)
@@ -86,7 +86,7 @@ class OpenSubtitles
 	def search_subtitles(*queries)
 
 		subs = client.call('SearchSubtitles', token, queries)['data']
-		subs ? subs.map { |s| Sub.new(s).url } : []
+		subs ? subs.map { |s| Sub.new(s) } : []
 
 	end
 

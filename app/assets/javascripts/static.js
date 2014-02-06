@@ -25,8 +25,8 @@ var handleHash = function(hash, size, filename) {
 				var language = sub['language'];
 				var IMDBId = sub['raw_data']['IDMovieImdb'];
 				var link = sub['raw_data']['ZipDownloadLink'];
-				var movieKin = sub['raw_data']['MovieKind'];
-				$("#test").append("<li>HASH - <a href=\"" + link + "\">" + filename + "</a></li>");
+				var movieKind = sub['raw_data']['MovieKind'];
+				$("#test").append('<li>FILENAME - <a href="/download?link=' + link + '&filename='+ filename +'">' + sub['filename'] + '</a></li>');
 			}
 		},
 		error: function(ret)
@@ -60,7 +60,7 @@ var handleFilename = function(filename)
 				var IMDBId = sub['raw_data']['IDMovieImdb'];
 				var link = sub['raw_data']['ZipDownloadLink'];
 				var movieKind = sub['raw_data']['MovieKind'];
-				$("#test").append('<li>FILENAME - <a href="/download?link=' + link + '&filename='+ filename +'">' + filename + '</a></li>');
+				$("#test").append('<li>FILENAME - <a href="/download?link=' + link + '&filename='+ filename +'">' + sub['filename'] + '</a></li>');
 			}
 		},
 		error: function(ret)
@@ -72,8 +72,9 @@ var handleFilename = function(filename)
 
 var handleFileDropped = function(event)
 {
+	console.log(event);
 	if (event.stopPropagation())
-		{
+	{
 		event.stopPropagation();
 	}
 	event.preventDefault();
@@ -82,8 +83,9 @@ var handleFileDropped = function(event)
 	handleFilename(event.dataTransfer.files[0].name)
 };
 
-handleDragOver = function(event)
+var handleDragOver = function(event)
 {
+	console.log('ici');
 	event.stopPropagation();
 	event.preventDefault();
 };
@@ -96,6 +98,10 @@ else
 {
 	console.log("don't support API");
 }
+
+// $(window).on('drop', handleFileDropped);
+// $(window).on('dragover', handleDragOver);
+// $('header').on('')
 
 window.addEventListener("dragover", handleDragOver, false);
 window.addEventListener("drop", handleFileDropped, false);

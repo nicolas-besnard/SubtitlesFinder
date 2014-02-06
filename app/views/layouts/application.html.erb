@@ -1,12 +1,51 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>SubtitlesFinder</title>
-  <%= stylesheet_link_tag    "application", :media => "all" %>
-  <%= javascript_include_tag "application" %>
-  <%= csrf_meta_tags %>
+	<title>SubtitlesFinder</title>
+	<%= stylesheet_link_tag    "application", :media => "all" %>
+	<%= javascript_include_tag "application" %>
+	<%= csrf_meta_tags %>
 </head>
 <body>
+<!-- <header class="text-center">
+	<h1>Subtitles Finder</h1>
+	<p><small>Drop your file here</small></p>
+</header> -->
+<section id="home" class="full-screen video" style="background-image: none; background-position: initial initial; background-repeat: initial initial;">
+
+
+</section>
+
+<header id="header">
+
+	<nav class="navbar navbar-inverse" role="navigation"><!-- add "wihite" class for white nav bar -->
+		<div class="container">
+
+			<button id="mobileMenu" class="fa fa-bars" type="button" data-toggle="collapse" data-target=".navbar-collapse"></button>
+
+			<div class="navbar-header">
+				<a class="navbar-brand scrollTo" href="#home">
+
+					<span class="">ISIS ONE</span>
+				</a>
+			</div>
+
+			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
+				<a href="#" class="btn-fullscreen" style="display: inline;"><i class="fa fa-external-link"></i></a>
+
+				<ul class="nav navbar-nav navbar-right">
+					<li><a href="#home" class="scrollTo">Home</a></li>
+					<li><a href="#about" class="scrollTo">About</a></li>
+					<li><a href="blog.html">Blog</a></li>
+					<li><a href="faq.html">FAQ</a></li>
+					<li><a href="#contact" class="scrollTo">Contact</a></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+
+</header>
 
 <%= yield %>
 

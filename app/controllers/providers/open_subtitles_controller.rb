@@ -36,7 +36,7 @@ class Providers::OpenSubtitlesController < ApplicationController
 
 			ret = s.search_subtitles(
 				query: params[:filename],
-				sublanguageid: 'eng,fre')
+				sublanguageid: 'fre')
 			s.logOut()
 
 			render json: ret

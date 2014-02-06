@@ -22,9 +22,14 @@ class StaticController < ApplicationController
 					if file.to_s.split('.').last == 'srt'
 
 						data = zipfile.read(file)
-						File.new(Rails.public_path + '/'+ params[:filename], 'w').write(data.force_encoding('iso-8859-1').encode('utf-8'))
 
-						send_file(Rails.public_path + '/'+ params[:filename])
+						filename = params[:filename].split('.')
+						filename.pop
+						filename = filename.join('.') + '.srt'
+
+						File.new(Rails.public_path + '/'+ filename, 'w').write(data.force_encoding('iso-8859-1').encode('utf-8'))
+
+						send_file(Rails.public_path + '/'+ filename)
 
 					end
 
