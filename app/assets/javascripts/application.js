@@ -14,4 +14,5 @@
 //= require jquery_ujs
 //= require opensubtitles-hash
 //= require utils
+//= require bootstrap.min
 //= require_tree .
