@@ -35,9 +35,9 @@ class OpenSubtitles
 	CLIENT_ARGS = [:host, :path, :port, :proxy_host, :proxy_port, :http_user, :http_password, :use_ssl, :timeout]
 
 	DEFAULT_OPTIONS = {
-		:host => 'api.opensubtitles.org',
-		:path => '/xml-rpc',
-		:timeout => 10
+		host: 'api.opensubtitles.org',
+		path: '/xml-rpc',
+		timeout: 10
 	}.freeze
 
 	def initialize(options={})

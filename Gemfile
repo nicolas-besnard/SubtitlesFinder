@@ -7,6 +7,9 @@ gem 'rails', '3.2.16'
 
 gem 'mysql2'
 gem 'jquery-rails'
+gem 'jquery-ui-rails'
+gem 'underscore-rails'
+gem 'font-awesome-rails'
 gem 'figaro'
 
 # TEST

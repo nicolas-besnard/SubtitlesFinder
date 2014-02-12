@@ -27,7 +27,7 @@ class StaticController < ApplicationController
 						filename.pop
 						filename = filename.join('.') + '.srt'
 
-						File.new(Rails.public_path + '/'+ filename, 'w').write(data.force_encoding('iso-8859-1').encode('utf-8'))
+						File.new(Rails.public_path + '/'+ filename, 'w').write(data.force_encoding('utf-8'))
 
 						send_file(Rails.public_path + '/'+ filename)
 

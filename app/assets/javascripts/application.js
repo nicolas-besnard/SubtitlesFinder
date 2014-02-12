@@ -12,7 +12,88 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery.ui.effect
 //= require opensubtitles-hash
 //= require utils
 //= require bootstrap.min
+//= require underscore
 //= require_tree .
+
+
+
+$(window).ready(function()
+{
+	// set header height!
+	window.navHeight 		= $("#header").height();
+
+	/** Full screen
+	*************************************************** **/
+
+	if ($(".full-screen").length > 0)
+	{
+		_fullscreen();
+
+		$(window).resize(function() {
+			_fullscreen();
+		});
+	}
+
+	function _fullscreen()
+	{
+
+		var _screenHeight = $(window).height();
+
+		$('.full-screen, .full-screen ul, .full-screen li').height(_screenHeight);
+		$('.test').height(_screenHeight);
+
+	}
+
+
+	/** SCROLL TO
+	*************************************************** **/
+	$("a.scrollTo").bind("click", function(e) {
+		e.preventDefault();
+
+		var href = $(this).attr('href');
+		if(href != '#') {
+			$('html,body').animate({scrollTop: $(href).offset().top - window.navHeight}, 1000, 'easeInOutExpo');
+		}
+	});
+
+	$("a.toTop").bind("click", function(e) {
+		e.preventDefault();
+		$('html,body').animate({scrollTop: 0}, 1000, 'easeInOutExpo');
+	});
+
+
+/* STICKY */
+
+if ($("#home").length > 0) {
+
+	window.isOnTop 		= true;
+	window.homeHeight 	= $("#home").height() - window.navHeight;
+	 /*
+		window.isOnTop = avoid bad actions on each scroll
+		Benefits: no unseen $ actions, faster rendering
+		*/
+		$(window).scroll(function() {
+			if($(document).scrollTop() > window.homeHeight) {
+				if(window.isOnTop === true) {
+					$('#header').addClass('fixed');
+					window.isOnTop = false;
+				}
+			} else {
+				if(window.isOnTop === false) {
+					$('#header').removeClass('fixed');
+					window.isOnTop = true;
+				}
+			}
+		});
+
+		$(window).resize(function() {
+			window.homeHeight = $("#home").height() - window.navHeight;
+		});
+
+	}
+
+});

@@ -1,4 +1,23 @@
-var handleHash = function(hash, size, filename) {
+var processOpenSubtitlesSearchResults = function(data)
+{
+	var subtitles = []
+
+	for (var _i = 0; _i < data.length; ++_i)
+	{
+		var subtitle = {};
+
+		subtitle['language'] = data[_i]['language'];
+		subtitle['link'] = data[_i]['raw_data']['ZipDownloadLink'];
+		subtitle['filename'] = data[_i]['filename'];
+
+		subtitles.push(subtitle);
+	}
+
+	return subtitles;
+};
+
+var handleHash = function(hash, size)
+{
 	console.log("Hash " + hash);
 	console.log("File Size " + size);
 
@@ -12,22 +31,11 @@ var handleHash = function(hash, size, filename) {
 			filename: "FILENAME",
 			size: size
 		},
-		success: function(ret)
+		success: function(data)
 		{
-			if (ret.length == 0)
-			{
-				$("#test").append('<li>empty</li>');
-				return ;
-			}
-			for (var _i = 0; _i < ret.length; _i++)
-			{
-				var sub = ret[_i];
-				var language = sub['language'];
-				var IMDBId = sub['raw_data']['IDMovieImdb'];
-				var link = sub['raw_data']['ZipDownloadLink'];
-				var movieKind = sub['raw_data']['MovieKind'];
-				$("#test").append('<li>FILENAME - <a href="/download?link=' + link + '&filename='+ filename +'">' + sub['filename'] + '</a></li>');
-			}
+			var subtitles = processOpenSubtitlesSearchResults(data);
+
+			_appendSubtitles(subtitles, true);
 		},
 		error: function(ret)
 		{
@@ -36,7 +44,7 @@ var handleHash = function(hash, size, filename) {
 	});
 };
 
-var handleFilename = function(filename)
+var handleFilename = function(file)
 {
 	$.ajax({
 		type: "GET",
@@ -44,24 +52,14 @@ var handleFilename = function(filename)
 		url: "/providers/opensubtitles",
 		data:
 		{
-			filename: filename
+			filename: file
 		},
-		success: function(ret)
+		success: function(data)
 		{
-			if (ret.length == 0)
-			{
-				$("#test").append('<li>empty</li>');
-				return ;
-			}
-			for (var _i = 0; _i < ret.length; _i++)
-			{
-				var sub = ret[_i];
-				var language = sub['language'];
-				var IMDBId = sub['raw_data']['IDMovieImdb'];
-				var link = sub['raw_data']['ZipDownloadLink'];
-				var movieKind = sub['raw_data']['MovieKind'];
-				$("#test").append('<li>FILENAME - <a href="/download?link=' + link + '&filename='+ filename +'">' + sub['filename'] + '</a></li>');
-			}
+			var subtitles = processOpenSubtitlesSearchResults(data);
+
+			_appendSubtitles(subtitles, true);
+			$('html,body').animate({scrollTop: $('#subs').offset().top - window.navHeight}, 1000, 'easeInOutExpo');
 		},
 		error: function(ret)
 		{
@@ -69,6 +67,34 @@ var handleFilename = function(filename)
 		}
 	});
 }
+
+var _appendSubtitles = function (subtitles, isPerfectMatch)
+{
+	var table = '';
+
+	for (var _i = 0; _i < subtitles.length; ++_i)
+	{
+		var template = '';
+			template += '	<tr>';
+			template += '		<td>';
+			if (isPerfectMatch)
+			{
+				template += '<i class="icon-thumbs-up tooltipize" title="Perfect Match" data-toggle="tooltip"/>&nbsp;&nbsp;';
+			}
+			template += subtitles[_i].language;
+			template += '		</td>';
+			template += '		<td>'+ subtitles[_i].filename +'</td>';
+			template += '		<td><a href="/download?link='+ subtitles[_i].link +'&filename='+ filename +'">Download</a></td>';
+			template += '	</tr>';
+			template += '	<% }); %>';
+
+		table += template
+	}
+
+	$("table tbody").append(table);
+};
+
+var dragTimer;
 
 var handleFileDropped = function(event)
 {
@@ -79,15 +105,30 @@ var handleFileDropped = function(event)
 	}
 	event.preventDefault();
 
+	$('.overlay').fadeOut();
+
+	filename = event.dataTransfer.files[0].name;
+
 	getHash(event.dataTransfer.files[0], handleHash);
 	handleFilename(event.dataTransfer.files[0].name)
 };
 
 var handleDragOver = function(event)
 {
-	console.log('ici');
+	$('.overlay').fadeIn();
+
+	event.dataTransfer.dropEffect = 'copy';
+
+	window.clearTimeout(dragTimer);
 	event.stopPropagation();
 	event.preventDefault();
+};
+
+var handleDragLeave = function(event)
+{
+	dragTimer = window.setTimeout(function() {
+		$('.overlay').fadeOut();
+	}, 25);
 };
 
 if (window.File && window.FileReader && window.FileList && window.Blob)
@@ -104,4 +145,5 @@ else
 // $('header').on('')
 
 window.addEventListener("dragover", handleDragOver, false);
+window.addEventListener('dragleave', handleDragLeave, false);
 window.addEventListener("drop", handleFileDropped, false);

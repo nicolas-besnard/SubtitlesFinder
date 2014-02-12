@@ -10,8 +10,61 @@
  *
  *= require_self
  *= require bootstrap.min
+ *= require font-awesome
+ *= require overlay
  *= require_tree .
  */
+
+ body
+ {
+ 	color: #666;
+	background: #fff;
+	font-family: 'Open Sans', sans-serif;
+	font-size: 19px;
+	font-style: normal;
+	font-weight: 300;
+	padding: 0px !important;
+	margin: 0px !important;
+	border: 0px !important;
+	height: 100%;
+	line-height: 1.5;
+
+	min-width: 100%;
+	min-height: 100%;
+	z-index: 1;
+	box-sizing: border-box;
+ }
+
+ .main-square
+ {
+ 	opacity: 0.9;
+	cursor: pointer;
+	padding: 20px;
+	min-height: 207px!important;
+	max-height: 300px;
+	text-align: center;
+	font-size: 28px;
+	text-decoration: none;
+	border: 5px solid #ffffff;
+	background: white;
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+	line-height: 30px;
+	white-space: normal;
+	box-shadow: none;
+	margin: 10% auto;
+
+	-webkit-transition: all .2s linear;
+	-moz-transition: all .2s linear;
+	-o-transition: all .2s linear;
+	transition: all .2s linear;
+ }
+
+ .main-square i
+ {
+ 	font-size: 40px;
+ }
 
 #home.full-screen
 {
@@ -33,4 +86,129 @@
 	top: 0;
 	color: #fff;
 	z-index: 99;
+}
+
+#header.fixed {
+position: fixed;
+margin-top: 0 !important;
+left: 0;
+right: 0;
+top: 0;
+}
+
+#header .navbar-inverse ul.nav a {
+color: #fff;
+text-transform: uppercase;
+font-size: 14px;
+letter-spacing: .1em;
+font-weight: 400;
+padding-top: 20px;
+padding-bottom: 20px;
+}
+
+section
+{
+	padding: 110px 0;
+	text-align: center
+}
+
+
+.raster
+{
+	background-color: rgba(0,0,0, 0.5);
+	background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAYAAAAGCAYAAADgzO9IAAAACXBI…AACBJREFUeNpiYGBgKP7//z8DOs0I5WAFtNYBAAAA//8DAP1QJ+tvc4PvAAAAAElFTkSuQmCC');
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	-webkit-transition: all 1s;
+	-moz-transition: all 1s;
+	-o-transition: all 1s;
+	transition: all 1s;
+}
+
+section.alternate.arrow-down {
+background: #F6F6F6 url('down_alternate.png') no-repeat top center;
+}
+
+section.alternate {
+background: #F6F6F6;
+}
+
+section.arrow-down {
+background: #ffffff url('../images/down_white.png') no-repeat top center;
+}
+
+.test
+{
+	position: absolute;
+z-index: 0;
+width: 1785.6px;
+height: 810px;
+top: 0px;
+left: 0px;
+overflow: hidden;
+opacity: 1;
+}
+
+#back
+{
+
+position: absolute;
+z-index: 0;
+min-width: 100%;
+min-height: 100%;
+left: 0px;
+top: 0px;
+overflow: hidden;
+opacity: 1;
+-webkit-backface-visibility: hidden;
+-webkit-transition: opacity 2000ms;
+transition: opacity 2000ms;
+
+/*position: fixed;
+z-index: 0;
+min-width: 100%;
+min-height: 100%;
+left: 0px;
+top: 0px;
+overflow: hidden;
+opacity: 1;
+-webkit-backface-visibility: hidden;*/
+
+}
+
+#languages
+{
+	opacity: 0.9;
+	cursor: pointer;
+	width: 500px;
+	top: 10%;
+	position: relative;
+	padding: 20px;
+	min-height: 207px;
+	max-height: 300px;
+	text-align: center;
+	font-size: 28px;
+	text-decoration: none;
+	border: 5px solid #ffffff;
+	background: white;
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+	line-height: 30px;
+	white-space: normal;
+	box-shadow: none;
+	margin: 0 auto;
+
+	-webkit-transition: all .2s linear;
+	-moz-transition: all .2s linear;
+	-o-transition: all .2s linear;
+	transition: all .2s linear;
+}
+
+#languages i
+{
+	font-size: 90px;
 }

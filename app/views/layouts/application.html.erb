@@ -2,52 +2,106 @@
 <html>
 <head>
 	<title>SubtitlesFinder</title>
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700,800|Dosis:300,400" rel="stylesheet" type="text/css">
 	<%= stylesheet_link_tag    "application", :media => "all" %>
 	<%= javascript_include_tag "application" %>
 	<%= csrf_meta_tags %>
 </head>
 <body>
-<!-- <header class="text-center">
-	<h1>Subtitles Finder</h1>
-	<p><small>Drop your file here</small></p>
-</header> -->
-<section id="home" class="full-screen video" style="background-image: none; background-position: initial initial; background-repeat: initial initial;">
+	<div id="back">
+		<div class="test">
+			<img src="http://placekitten.com/g/200/300">
+			<img src="http://placekitten.com/g/200/300">
+			<img src="http://placekitten.com/g/200/300">
+			<img src="http://placekitten.com/g/200/300">
+			<img src="http://placekitten.com/g/200/300">
+			<img src="http://placekitten.com/g/200/300">
+			<img src="http://placekitten.com/g/200/300">
+			<img src="http://placekitten.com/g/200/300">
+			<img src="http://placekitten.com/g/200/300">
+			<img src="http://placekitten.com/g/200/300">
+			<img src="http://placekitten.com/g/200/300">
+			<img src="http://placekitten.com/g/200/300">
+			<img src="http://placekitten.com/g/200/300">
+			<img src="http://placekitten.com/g/200/300">
+			<img src="http://placekitten.com/g/200/300">
+			<img src="http://placekitten.com/g/200/300">
+			<img src="http://placekitten.com/g/200/300">
+			<img src="http://placekitten.com/g/200/300">
+			<img src="http://placekitten.com/g/200/300">
+			<img src="http://placekitten.com/g/200/300">
+			<img src="http://placekitten.com/g/200/300">
+			<img src="http://placekitten.com/g/200/300">
+			<img src="http://placekitten.com/g/200/300">
+			<img src="http://placekitten.com/g/200/300">
+		</div>
+	</div>
 
+	<section id="home" class="full-screen">
 
-</section>
+		<span class="raster"></span>
 
-<header id="header">
-
-	<nav class="navbar navbar-inverse" role="navigation"><!-- add "wihite" class for white nav bar -->
 		<div class="container">
 
-			<button id="mobileMenu" class="fa fa-bars" type="button" data-toggle="collapse" data-target=".navbar-collapse"></button>
+			<div class="col-lg-5 main-square">
 
-			<div class="navbar-header">
-				<a class="navbar-brand scrollTo" href="#home">
+				<i class="fa fa-comment"></i>
+				<br /><br />
+				Select your language
 
-					<span class="">ISIS ONE</span>
-				</a>
+				<div class="selected">
+					<img lang="fr" src="<%= image_path('flag_fr.png') %>">
+					<img lang="en" src="<%= image_path('flag_en.png') %>">
+				</div>
+
 			</div>
 
-			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-
-				<a href="#" class="btn-fullscreen" style="display: inline;"><i class="fa fa-external-link"></i></a>
-
-				<ul class="nav navbar-nav navbar-right">
-					<li><a href="#home" class="scrollTo">Home</a></li>
-					<li><a href="#about" class="scrollTo">About</a></li>
-					<li><a href="blog.html">Blog</a></li>
-					<li><a href="faq.html">FAQ</a></li>
-					<li><a href="#contact" class="scrollTo">Contact</a></li>
-				</ul>
+			<div class="col-lg-2 hidden-xs" style="margin: 12% auto; font-size: 80px; color: white;">
+				<i class="fa fa-arrow-right"></i>
 			</div>
+
+			<div class="col-lg-5 main-square hidden-xs">
+
+				<i class="fa fa-cloud-download"></i>
+				<br /><br />
+				Now, drop your file !
+
+			</div>
+
 		</div>
-	</nav>
 
-</header>
+	</section>
 
-<%= yield %>
+	<header id="header">
 
+		<nav class="navbar navbar-inverse" role="navigation">
+			<div class="container">
+
+
+				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
+					<ul class="nav">
+						<li><a href="#home" class="scrollTo">Home</a></li>
+						<li><a href="#subs" class="scrollTo">Main</a></li>
+						<li><a href="#contact" class="scrollTo">Contact</a></li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+
+	</header>
+
+	<%= yield %>
+
+	<div class="overlay" style="display: none;">
+
+		<div id="dropit" style="display: block;">
+			<p class="semibold"><i class="fa fa-cloud-download"></i><br>Drop it !</p>
+		</div>
+
+		<div id="loading" style="display: none;">
+			<div id="loaderImage" style="background-image: url(http://www.subloader.com/img/loading.png); width: 128px; height: 128px; background-position: -1536px 0px;"></div>
+		</div>
+	</div>
 </body>
 </html>
