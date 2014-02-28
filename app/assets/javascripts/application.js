@@ -42,9 +42,8 @@ $(window).ready(function()
 	{
 
 		var _screenHeight = $(window).height();
-
+		$('#wow').css('top', $(window).height() + 'px');
 		$('.full-screen, .full-screen ul, .full-screen li').height(_screenHeight);
-		$('.test').height(_screenHeight);
 
 	}
 
