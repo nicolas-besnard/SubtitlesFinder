@@ -1,0 +1,1 @@
+web: bundle exec puma -e production -b unix:///var/run/subtitles_finder.sock

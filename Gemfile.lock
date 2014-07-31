@@ -57,6 +57,7 @@ GEM
     database_cleaner (0.9.1)
     debug_inspector (0.0.2)
     diff-lcs (1.2.5)
+    dotenv (0.7.0)
     email_spec (1.4.0)
       launchy (~> 2.1)
       mail (~> 2.2)
@@ -74,6 +75,9 @@ GEM
       rails (>= 3, < 5)
     font-awesome-rails (4.0.3.1)
       railties (>= 3.2, < 5.0)
+    foreman (0.64.0)
+      dotenv (~> 0.7.0)
+      thor (>= 0.13.6)
     formatador (0.2.4)
     guard (2.2.4)
       formatador (>= 0.2.4)
@@ -124,6 +128,8 @@ GEM
       coderay (~> 1.0)
       method_source (~> 0.8)
       slop (~> 3.4)
+    puma (2.9.0)
+      rack (>= 1.1, < 2.0)
     rack (1.4.5)
     rack-cache (1.2)
       rack (>= 0.4)
@@ -217,12 +223,14 @@ DEPENDENCIES
   factory_girl_rails
   figaro
   font-awesome-rails
+  foreman
   guard-rspec
   httparty
   jquery-rails
   jquery-ui-rails
   meta_request
   mysql2
+  puma
   rails (= 3.2.16)
   rspec-rails
   rubyzip
