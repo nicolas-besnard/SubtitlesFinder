@@ -1,1 +1,1 @@
-web: bundle exec puma -e production -b unix:///var/run/subtitles_finder.sock
+web: bundle exec puma -e production -b unix:///home/deploy/SubtitlesFinder/shared/sockets/puma.sock
