@@ -4,7 +4,7 @@ class Providers::ProvidersController < ApplicationController
 
 		if params[:hash] && params[:size]
 
-			s = ::::Server.new({
+			s = Server.new({
 				username: ENV['OPENSUBTITLES_USERNAME'],
 				password: ENV['OPENSUBTITLES_PASSWORD'],
 				language: 'eng', useragent: ENV['OPENSUBTITLES_USERAGENT']
